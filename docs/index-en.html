@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WA Broadcast - Open-Source WhatsApp Platform</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif; background: #06140d; color: #eafff4; line-height: 1.8; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    header { background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); padding: 60px 0; text-align: center; }
+    header h1 { font-size: 3rem; color: white; margin-bottom: 20px; font-weight: 700; }
+    header p { font-size: 1.3rem; color: rgba(255,255,255,0.95); max-width: 800px; margin: 0 auto 30px; }
+    .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .btn { padding: 15px 40px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; display: inline-block; }
+    .btn-primary { background: white; color: #25d366; }
+    .btn-primary:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+    .btn-secondary { background: transparent; color: white; border: 2px solid white; }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+    section { padding: 60px 0; }
+    .section-title { font-size: 2rem; text-align: center; margin-bottom: 40px; color: #25d366; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .feature-card { background: rgba(37,211,102,0.05); border: 1px solid rgba(37,211,102,0.2); border-radius: 12px; padding: 30px; transition: all 0.3s; }
+    .feature-card:hover { transform: translateY(-5px); border-color: #25d366; box-shadow: 0 10px 30px rgba(37,211,102,0.1); }
+    .feature-icon { font-size: 2.5rem; margin-bottom: 15px; }
+    .feature-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: #25d366; }
+    .feature-card p { color: rgba(234,255,244,0.8); }
+    .stats { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; padding: 40px 0; }
+    .stat { text-align: center; }
+    .stat-number { font-size: 3rem; font-weight: 700; color: #25d366; }
+    .stat-label { color: rgba(234,255,244,0.7); }
+    .tech-stack { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; padding: 20px 0; }
+    .tech-badge { background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.3); padding: 10px 20px; border-radius: 20px; font-size: 0.9rem; }
+    .use-cases { background: rgba(37,211,102,0.03); }
+    .use-case-list { list-style: none; max-width: 600px; margin: 0 auto; }
+    .use-case-list li { padding: 15px 0; border-bottom: 1px solid rgba(37,211,102,0.1); display: flex; align-items: center; gap: 15px; }
+    .use-case-list li::before { content: "✓"; color: #25d366; font-weight: bold; font-size: 1.3rem; }
+    .quick-start { background: #0a1f14; border-radius: 12px; padding: 30px; max-width: 700px; margin: 0 auto; }
+    .quick-start pre { background: #06140d; border: 1px solid rgba(37,211,102,0.2); border-radius: 8px; padding: 20px; overflow-x: auto; }
+    .quick-start code { color: #25d366; font-family: 'Fira Code', monospace; font-size: 0.9rem; }
+    .compliance { text-align: center; padding: 40px 0; }
+    .compliance-badges { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+    .compliance-badge { background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.3); padding: 15px 25px; border-radius: 8px; }
+    .compliance-badge strong { color: #25d366; display: block; }
+    footer { background: #041008; padding: 40px 0; text-align: center; color: rgba(234,255,244,0.5); }
+    footer a { color: #25d366; text-decoration: none; }
+    .lang-switch { position: absolute; top: 20px; right: 20px; }
+    @media (max-width: 768px) { header h1 { font-size: 2rem; } .stats { gap: 30px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="lang-switch">
+      <a href="index.html" style="color:rgba(255,255,255,0.7); margin: 0 10px;">العربية</a>
+      <a href="index-en.html" style="color:white; margin: 0 10px;">English</a>
+    </div>
+    <div class="container">
+      <h1>🚀 WA Broadcast</h1>
+      <p>Open-source, multi-tenant, self-hosted WhatsApp messaging platform on Meta Cloud API</p>
+      <div class="cta-buttons">
+        <a href="https://github.com/Ibrahim-Abedrabboh/wa-broadcast" class="btn btn-primary">⭐ Star on GitHub</a>
+        <a href="https://github.com/Ibrahim-Abedrabboh/wa-broadcast#quick-start-docker" class="btn btn-secondary">📖 Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="stats">
+        <div class="stat"><div class="stat-number">MIT</div><div class="stat-label">Open Source</div></div>
+        <div class="stat"><div class="stat-number">∞</div><div class="stat-label">Users & Clients</div></div>
+        <div class="stat"><div class="stat-number">AR/EN</div><div class="stat-label">Bilingual</div></div>
+        <div class="stat"><div class="stat-number">100%</div><div class="stat-label">Self-Hosted</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">Key Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🏢</div>
+          <h3>Multi-Tenancy</h3>
+          <p>Each client gets their own WhatsApp number, contacts, templates, and team. Perfect for marketing agencies.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>Two-Way Inbox</h3>
+          <p>Reply to customers directly in live conversations with 24-hour service window tracking and media support.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Rich Templates</h3>
+          <p>Media headers (image/video/PDF), coupon codes, carousels, and interactive buttons (call, URL, quick reply).</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Detailed Analytics</h3>
+          <p>Delivery funnel (Sent → Delivered → Read), read rates, button event tracking, and per-campaign stats.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>Campaign Scheduling</h3>
+          <p>Recurring and scheduled campaigns with UTC timezone support, pause and resume capabilities.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Security & Compliance</h3>
+          <p>Full encryption (bcrypt, JWT), HMAC webhook verification, rate limiting. Ideal for Saudi PDPL, UAE DPL compliance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="use-cases">
+    <div class="container">
+      <h2 class="section-title">Who Is It For?</h2>
+      <ul class="use-case-list">
+        <li>Digital marketing companies</li>
+        <li>Social media agencies</li>
+        <li>Technology solution providers (SaaS)</li>
+        <li>Companies managing WhatsApp for multiple clients</li>
+        <li>Any business wanting a professional WhatsApp solution without limits</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">Start in 5 Minutes</h2>
+      <div class="quick-start">
+        <pre><code>git clone https://github.com/Ibrahim-Abedrabboh/wa-broadcast
+cd wa-broadcast
+cp .env.example .env
+docker compose up --build</code></pre>
+        <p style="text-align: center; margin-top: 20px; color: rgba(234,255,244,0.7);">That's it! Platform running at http://localhost:3000</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">Tech Stack</h2>
+      <div class="tech-stack">
+        <span class="tech-badge">Next.js 15</span>
+        <span class="tech-badge">TypeScript</span>
+        <span class="tech-badge">PostgreSQL</span>
+        <span class="tech-badge">Redis</span>
+        <span class="tech-badge">BullMQ</span>
+        <span class="tech-badge">Docker</span>
+        <span class="tech-badge">Meta Cloud API</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="compliance">
+    <div class="container">
+      <h2 class="section-title">Local Data Compliance</h2>
+      <p style="max-width: 600px; margin: 0 auto 20px; color: rgba(234,255,244,0.8);">Your data stays in your country — full self-hosting ideal for compliance</p>
+      <div class="compliance-badges">
+        <div class="compliance-badge"><strong>🇸🇦 Saudi Arabia</strong>PDPL</div>
+        <div class="compliance-badge"><strong>🇦🇪 UAE</strong>DPL</div>
+        <div class="compliance-badge"><strong>🇯🇴 Jordan</strong>Privacy Law</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Open-source project under MIT License</p>
+      <p style="margin-top: 10px;">
+        <a href="https://github.com/Ibrahim-Abedrabboh/wa-broadcast">GitHub</a> ·
+        <a href="https://github.com/Ibrahim-newaeon/whatsapphub">WhatsApp Hub (Enhanced UI)</a>
+      </p>
+      <p style="margin-top: 20px; font-size: 0.85rem;">Made with ❤️ for MENA region</p>
+    </div>
+  </footer>
+</body>
+</html>
