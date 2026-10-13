@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WA Broadcast - منصة رسائل واتساب مفتوحة المصدر</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; background: #06140d; color: #eafff4; line-height: 1.8; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    header { background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); padding: 60px 0; text-align: center; }
+    header h1 { font-size: 3rem; color: white; margin-bottom: 20px; font-weight: 700; }
+    header p { font-size: 1.3rem; color: rgba(255,255,255,0.95); max-width: 800px; margin: 0 auto 30px; }
+    .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .btn { padding: 15px 40px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; display: inline-block; }
+    .btn-primary { background: white; color: #25d366; }
+    .btn-primary:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+    .btn-secondary { background: transparent; color: white; border: 2px solid white; }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+    section { padding: 60px 0; }
+    .section-title { font-size: 2rem; text-align: center; margin-bottom: 40px; color: #25d366; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .feature-card { background: rgba(37,211,102,0.05); border: 1px solid rgba(37,211,102,0.2); border-radius: 12px; padding: 30px; transition: all 0.3s; }
+    .feature-card:hover { transform: translateY(-5px); border-color: #25d366; box-shadow: 0 10px 30px rgba(37,211,102,0.1); }
+    .feature-icon { font-size: 2.5rem; margin-bottom: 15px; }
+    .feature-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: #25d366; }
+    .feature-card p { color: rgba(234,255,244,0.8); }
+    .stats { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; padding: 40px 0; }
+    .stat { text-align: center; }
+    .stat-number { font-size: 3rem; font-weight: 700; color: #25d366; }
+    .stat-label { color: rgba(234,255,244,0.7); }
+    .tech-stack { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; padding: 20px 0; }
+    .tech-badge { background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.3); padding: 10px 20px; border-radius: 20px; font-size: 0.9rem; }
+    .use-cases { background: rgba(37,211,102,0.03); }
+    .use-case-list { list-style: none; max-width: 600px; margin: 0 auto; }
+    .use-case-list li { padding: 15px 0; border-bottom: 1px solid rgba(37,211,102,0.1); display: flex; align-items: center; gap: 15px; }
+    .use-case-list li::before { content: "✓"; color: #25d366; font-weight: bold; font-size: 1.3rem; }
+    .quick-start { background: #0a1f14; border-radius: 12px; padding: 30px; max-width: 700px; margin: 0 auto; }
+    .quick-start pre { background: #06140d; border: 1px solid rgba(37,211,102,0.2); border-radius: 8px; padding: 20px; overflow-x: auto; direction: ltr; text-align: left; }
+    .quick-start code { color: #25d366; font-family: 'Fira Code', monospace; font-size: 0.9rem; }
+    .compliance { text-align: center; padding: 40px 0; }
+    .compliance-badges { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+    .compliance-badge { background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.3); padding: 15px 25px; border-radius: 8px; }
+    .compliance-badge strong { color: #25d366; display: block; }
+    footer { background: #041008; padding: 40px 0; text-align: center; color: rgba(234,255,244,0.5); }
+    footer a { color: #25d366; text-decoration: none; }
+    .lang-switch { position: absolute; top: 20px; left: 20px; }
+    html[dir="rtl"] .lang-switch { left: auto; right: 20px; }
+    @media (max-width: 768px) { header h1 { font-size: 2rem; } .stats { gap: 30px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="lang-switch">
+      <a href="landing-ar.html" style="color:white; margin: 0 10px;">العربية</a>
+      <a href="../README.en.md" style="color:rgba(255,255,255,0.7); margin: 0 10px;">English</a>
+    </div>
+    <div class="container">
+      <h1>🚀 WA Broadcast</h1>
+      <p>منصة رسائل واتساب مفتوحة المصدر، متعددة المستأجرين، ومستضافة ذاتياً على Meta Cloud API</p>
+      <div class="cta-buttons">
+        <a href="https://github.com/Ibrahim-Abedrabboh/wa-broadcast" class="btn btn-primary">⭐ أضف نجمة على GitHub</a>
+        <a href="https://github.com/Ibrahim-Abedrabboh/wa-broadcast#quick-start-docker" class="btn btn-secondary">📖 ابدأ الآن</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="stats">
+        <div class="stat"><div class="stat-number">MIT</div><div class="stat-label">مفتوح المصدر</div></div>
+        <div class="stat"><div class="stat-number">∞</div><div class="stat-label">مستخدمين وعملاء</div></div>
+        <div class="stat"><div class="stat-number">AR/EN</div><div class="stat-label">دعم ثنائي اللغة</div></div>
+        <div class="stat"><div class="stat-number">100%</div><div class="stat-label">استضافة ذاتية</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">المميزات الرئيسية</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🏢</div>
+          <h3>تعدد المستأجرين</h3>
+          <p>كل عميل له رقم واتساب خاص، جهات اتصال منفصلة، قوالب مخصصة، وفريق مستقل. مثالي لوكالات التسويق.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>صندوق وارد ثنائي الاتجاه</h3>
+          <p>رد على عملائك مباشرة في محادثات حية مع تتبع النافذة الخدمية 24 ساعة وإرسال الوسائط.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>قوالب غنية</h3>
+          <p>رؤوس وسائط (صور/فيديو/PDF)، أكواد كوبونات، شرائط عرض، وأزرار تفاعلية (اتصال، URL، رد سريع).</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>تحليلات مفصلة</h3>
+          <p>قمع التسليم (Sent → Delivered → Read)، معدلات القراءة، تتبع أحداث الأزرار، وإحصائيات لكل حملة.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>جدولة الحملات</h3>
+          <p>حملات متكررة ومجدولة بتوقيت UTC مع إمكانية الإيقاف والاستئناف.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>أمان وامتثال</h3>
+          <p>تشفير كامل (bcrypt, JWT)، HMAC للـ webhooks، rate limiting. مثالي لـ PDPL السعودية و DPL الإمارات.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="use-cases">
+    <div class="container">
+      <h2 class="section-title">مين يستفيد منها؟</h2>
+      <ul class="use-case-list">
+        <li>شركات التسويق الرقمي</li>
+        <li>وكالات التواصل الاجتماعي</li>
+        <li>مزودي الحلول التقنية (SaaS)</li>
+        <li>الشركات اللي تدير واتساب لعدة عملاء</li>
+        <li>أي شركة تبي حل واتساب احترافي بدون قيود</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">ابدأ في 5 دقائق</h2>
+      <div class="quick-start">
+        <pre><code>git clone https://github.com/Ibrahim-Abedrabboh/wa-broadcast
+cd wa-broadcast
+cp .env.example .env
+docker compose up --build</code></pre>
+        <p style="text-align: center; margin-top: 20px; color: rgba(234,255,244,0.7);">بس! المنصة شغالة على http://localhost:3000</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">التقنيات المستخدمة</h2>
+      <div class="tech-stack">
+        <span class="tech-badge">Next.js 15</span>
+        <span class="tech-badge">TypeScript</span>
+        <span class="tech-badge">PostgreSQL</span>
+        <span class="tech-badge">Redis</span>
+        <span class="tech-badge">BullMQ</span>
+        <span class="tech-badge">Docker</span>
+        <span class="tech-badge">Meta Cloud API</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="compliance">
+    <div class="container">
+      <h2 class="section-title">الامتثال للأنظمة المحلية</h2>
+      <p style="max-width: 600px; margin: 0 auto 20px; color: rgba(234,255,244,0.8);">بياناتك تبقى في بلدك — استضافة ذاتية كاملة مثالية للامتثال</p>
+      <div class="compliance-badges">
+        <div class="compliance-badge"><strong>🇸🇦 السعودية</strong>PDPL</div>
+        <div class="compliance-badge"><strong>🇦🇪 الإمارات</strong>DPL</div>
+        <div class="compliance-badge"><strong>🇯🇴 الأردن</strong>Privacy Law</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>مشروع مفتوح المصدر تحت رخصة MIT</p>
+      <p style="margin-top: 10px;">
+        <a href="https://github.com/Ibrahim-Abedrabboh/wa-broadcast">GitHub</a> ·
+        <a href="https://github.com/Ibrahim-newaeon/whatsapphub">WhatsApp Hub (الواجهة المحسّنة)</a>
+      </p>
+      <p style="margin-top: 20px; font-size: 0.85rem;">صنع بـ ❤️ لمنطقة MENA</p>
+    </div>
+  </footer>
+</body>
+</html>
