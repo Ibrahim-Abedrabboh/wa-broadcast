@@ -1,4 +1,7 @@
 import "./globals.css";
+import "./design-system.css";
+import "./components.css";
+import "./states.css";
 import { Inter, Cairo, Schibsted_Grotesk } from "next/font/google";
 
 // Self-hosted at build time — no render-blocking Google Fonts request, no FOUT.

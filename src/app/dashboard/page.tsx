@@ -9,6 +9,15 @@ import { getClientIdFromCookies } from "@/lib/users";
 
 export const dynamic = "force-dynamic";
 
+function T({ en, ar }: { en: string; ar: string }) {
+  return (
+    <>
+      <span data-lang="en">{en}</span>
+      <span data-lang="ar">{ar}</span>
+    </>
+  );
+}
+
 export default async function Dashboard() {
   const clientId = await getClientIdFromCookies();
 
@@ -72,22 +81,38 @@ export default async function Dashboard() {
         {/* ── Command-center header: title + honest live status line ── */}
         <header className="dash-head reveal">
           <div>
-            <p className="eyebrow">Command center</p>
-            <h1>Dashboard</h1>
+            <p className="eyebrow">
+              <T en="Command center" ar="مركز التحكم" />
+            </p>
+            <h1>
+              <T en="Dashboard" ar="لوحة التحكم" />
+            </h1>
             <p className="dash-status" aria-live="polite">
               {sendingNow > 0 ? (
                 <>
                   <span className="pulse-dot" aria-hidden />
                   <span>
-                    <strong>{nf(sendingNow)}</strong> {plural(sendingNow, "campaign")} sending now
+                    <strong>{nf(sendingNow)}</strong>{" "}
+                    <T
+                      en={plural(sendingNow, "campaign")}
+                      ar={plural(sendingNow, "حملة", "حملات")}
+                    />{" "}
+                    <T en="sending now" ar="تُرسل الآن" />
                   </span>
                 </>
               ) : scheduled > 0 ? (
                 <span>
-                  <strong>{nf(scheduled)}</strong> {plural(scheduled, "campaign")} scheduled to send
+                  <strong>{nf(scheduled)}</strong>{" "}
+                  <T
+                    en={plural(scheduled, "campaign")}
+                    ar={plural(scheduled, "حملة", "حملات")}
+                  />{" "}
+                  <T en="scheduled to send" ar="مجدولة للإرسال" />
                 </span>
               ) : (
-                <span>Nothing sending right now — all quiet.</span>
+                <span>
+                  <T en="Nothing sending right now — all quiet." ar="لا شيء يُرسل الآن — كل شيء هادئ." />
+                </span>
               )}
               {unread > 0 && (
                 <>
@@ -95,54 +120,71 @@ export default async function Dashboard() {
                     ·
                   </span>
                   <Link href="/inbox" className="dash-status__link">
-                    {nf(unread)} unread {plural(unread, "reply", "replies")}
+                    {nf(unread)}{" "}
+                    <T
+                      en={plural(unread, "reply", "replies")}
+                      ar={plural(unread, "رد", "ردود")}
+                    />
                   </Link>
                 </>
               )}
             </p>
           </div>
-          <p className="dash-asof">Snapshot · {timeLabel(new Date())}</p>
+          <p className="dash-asof">
+            <T en="Snapshot" ar="لقطة" /> · {timeLabel(new Date())}
+          </p>
         </header>
 
-        {/* ── Deliverability (hero) + live pulse ── */}
+        {/* ── Deliverability (hero) + live pulse ─ */}
         <section className="analytics reveal d1" aria-label="Deliverability">
           <div className="card">
             <div className="dash-cardhead">
-              <h3>Deliverability</h3>
-              <span className="note">across all sends</span>
+              <h3>
+                <T en="Deliverability" ar="معدل التوصيل" />
+              </h3>
+              <span className="note">
+                <T en="across all sends" ar="عبر جميع الإرسالات" />
+              </span>
             </div>
 
             {everSent ? (
               <>
                 <div className="dash-rates">
-                  <Rate value={`${pct(delivered, sent)}%`} label="Reached the phone" />
-                  <Rate value={`${pct(read, delivered)}%`} label="Opened & read" />
-                  <Rate value={`${pct(failed, totalRecipients)}%`} label="Failed" muted={failed === 0} />
+                  <Rate value={`${pct(delivered, sent)}%`} label="Reached the phone" labelAr="وصلت للهاتف" />
+                  <Rate value={`${pct(read, delivered)}%`} label="Opened & read" labelAr="فُتحت وقُرئت" />
+                  <Rate value={`${pct(failed, totalRecipients)}%`} label="Failed" labelAr="فشلت" muted={failed === 0} />
                 </div>
                 <div className="funnel">
-                  <FunnelRow label="Sent" value={sent} total={totalRecipients} accent />
-                  <FunnelRow label="Delivered" value={delivered} total={totalRecipients} />
-                  <FunnelRow label="Read" value={read} total={totalRecipients} />
+                  <FunnelRow label="Sent" labelAr="مُرسلة" value={sent} total={totalRecipients} accent />
+                  <FunnelRow label="Delivered" labelAr="مسلَّمة" value={delivered} total={totalRecipients} />
+                  <FunnelRow label="Read" labelAr="مقروءة" value={read} total={totalRecipients} />
                 </div>
               </>
             ) : (
               <div className="dash-empty dash-empty--inset">
-                <strong>No messages sent yet</strong>
-                Your delivery funnel — sent, delivered, read — appears here after your first broadcast.
+                <strong>
+                  <T en="No messages sent yet" ar="لم تُرسل رسائل بعد" />
+                </strong>
+                <T
+                  en="Your delivery funnel — sent, delivered, read — appears here after your first broadcast."
+                  ar="قمع التوصيل — المرسلة والمسلَّمة والمقروءة — سيظهر هنا بعد أول بث لك."
+                />
               </div>
             )}
           </div>
 
           <div className="card">
             <div className="dash-cardhead">
-              <h3>Live now</h3>
+              <h3>
+                <T en="Live now" ar="مباشر الآن" />
+              </h3>
               {sendingNow > 0 && <span className="pulse-dot" aria-hidden />}
             </div>
             <div className="dash-pulse">
-              <PulseRow k="Sending" v={bs.SENDING} live={bs.SENDING > 0} />
-              <PulseRow k="Queued" v={bs.QUEUED} />
-              <PulseRow k="Scheduled" v={scheduled} />
-              <PulseRow k="Unread replies" v={unread} href="/inbox" accent={unread > 0} />
+              <PulseRow k="Sending" kAr="تُرسَل" v={bs.SENDING} live={bs.SENDING > 0} />
+              <PulseRow k="Queued" kAr="في الانتظار" v={bs.QUEUED} />
+              <PulseRow k="Scheduled" kAr="مجدولة" v={scheduled} />
+              <PulseRow k="Unread replies" kAr="ردود غير مقروءة" v={unread} href="/inbox" accent={unread > 0} />
             </div>
           </div>
         </section>
@@ -151,38 +193,48 @@ export default async function Dashboard() {
         <section className="dash-ledger reveal d2" aria-label="Audience">
           <div className="dash-ledger__item">
             <div className="dash-ledger__num">{nf(contacts)}</div>
-            <div className="dash-ledger__label">Contacts</div>
+            <div className="dash-ledger__label">
+              <T en="Contacts" ar="جهات الاتصال" />
+            </div>
             {contacts > 0 && (
               <>
                 <div className="dash-ledger__meter" aria-hidden>
                   <i style={{ width: `${optInPct}%` }} />
                 </div>
                 <div className="dash-ledger__sub">
-                  {optInPct}% opted in · {nf(optedOut)} opted out
+                  {optInPct}% <T en="opted in" ar="وافقوا" /> · {nf(optedOut)} <T en="opted out" ar="ألغوا الاشتراك" />
                 </div>
               </>
             )}
           </div>
           <div className="dash-ledger__item">
             <div className="dash-ledger__num">{nf(lists.length)}</div>
-            <div className="dash-ledger__label">Lists</div>
+            <div className="dash-ledger__label">
+              <T en="Lists" ar="القوائم" />
+            </div>
             <Link href="/lists" className="dash-ledger__sub dash-ledger__sub--link">
-              Manage lists →
+              <T en="Manage lists →" ar="إدارة القوائم ←" />
             </Link>
           </div>
           <div className="dash-ledger__item">
             <div className="dash-ledger__num">{nf(templates.length)}</div>
-            <div className="dash-ledger__label">Approved templates</div>
+            <div className="dash-ledger__label">
+              <T en="Approved templates" ar="القوالب المعتمدة" />
+            </div>
             <Link href="/templates" className="dash-ledger__sub dash-ledger__sub--link">
-              View templates →
+              <T en="View templates →" ar="عرض القوالب ←" />
             </Link>
           </div>
         </section>
 
-        {/* ── Compose — the three core actions, kept intact ── */}
+        {/* ─ Compose — the three core actions, kept intact ── */}
         <section className="dash-section reveal d3">
-          <p className="eyebrow">Compose</p>
-          <h2>Build a list, import contacts, send</h2>
+          <p className="eyebrow">
+            <T en="Compose" ar="إنشاء" />
+          </p>
+          <h2>
+            <T en="Build a list, import contacts, send" ar="أنشئ قائمة، استورد جهات اتصال، أرسِل" />
+          </h2>
         </section>
         <section className="grid-forms reveal d3">
           <NewListForm lists={lists} />
@@ -192,18 +244,32 @@ export default async function Dashboard() {
 
         {/* ── Recent broadcasts ── */}
         <section className="dash-section reveal d4">
-          <h2>Recent broadcasts</h2>
+          <h2>
+            <T en="Recent broadcasts" ar="آخر البثوث" />
+          </h2>
         </section>
         <div className="card reveal d4" style={{ padding: 0, overflow: "hidden" }}>
           <table data-test-id="broadcasts-table" className="table dash-table">
             <thead>
               <tr>
-                <th>Template</th>
-                <th>List</th>
-                <th>Status</th>
-                <th>Delivery</th>
-                <th>Failed</th>
-                <th>When</th>
+                <th>
+                  <T en="Template" ar="القالب" />
+                </th>
+                <th>
+                  <T en="List" ar="القائمة" />
+                </th>
+                <th>
+                  <T en="Status" ar="الحالة" />
+                </th>
+                <th>
+                  <T en="Delivery" ar="التوصيل" />
+                </th>
+                <th>
+                  <T en="Failed" ar="فاشلة" />
+                </th>
+                <th>
+                  <T en="When" ar="متى" />
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -243,8 +309,13 @@ export default async function Dashboard() {
                 <tr>
                   <td colSpan={6}>
                     <div className="dash-empty">
-                      <strong>No broadcasts yet</strong>
-                      Pick a template and a list above, then send — your sends will show up here with live delivery.
+                      <strong>
+                        <T en="No broadcasts yet" ar="لا بثوث بعد" />
+                      </strong>
+                      <T
+                        en="Pick a template and a list above, then send — your sends will show up here with live delivery."
+                        ar="اختر قالباً وقائمة أعلاه ثم أرسِل — ستظهر إرسالاتك هنا مع التوصيل المباشر."
+                      />
                     </div>
                   </td>
                 </tr>
@@ -257,22 +328,26 @@ export default async function Dashboard() {
   );
 }
 
-/* ── server-rendered presentational helpers ── */
+/* ─ server-rendered presentational helpers ── */
 
-function Rate({ value, label, muted }: { value: string; label: string; muted?: boolean }) {
+function Rate({ value, label, labelAr, muted }: { value: string; label: string; labelAr: string; muted?: boolean }) {
   return (
     <div className="dash-rate">
       <div className={`dash-rate__val${muted ? " dash-rate__val--muted" : ""}`}>{value}</div>
-      <div className="dash-rate__label">{label}</div>
+      <div className="dash-rate__label">
+        <T en={label} ar={labelAr} />
+      </div>
     </div>
   );
 }
 
-function FunnelRow({ label, value, total, accent }: { label: string; value: number; total: number; accent?: boolean }) {
+function FunnelRow({ label, labelAr, value, total, accent }: { label: string; labelAr: string; value: number; total: number; accent?: boolean }) {
   const w = pct(value, total);
   return (
     <div className="funnel__row">
-      <span className="funnel__label">{label}</span>
+      <span className="funnel__label">
+        <T en={label} ar={labelAr} />
+      </span>
       <span className="funnel__track">
         <span className={`funnel__bar${accent ? " funnel__bar--accent" : ""}`} style={{ width: `${w}%` }} />
       </span>
@@ -283,7 +358,7 @@ function FunnelRow({ label, value, total, accent }: { label: string; value: numb
   );
 }
 
-function PulseRow({ k, v, live, accent, href }: { k: string; v: number; live?: boolean; accent?: boolean; href?: string }) {
+function PulseRow({ k, kAr, v, live, accent, href }: { k: string; kAr: string; v: number; live?: boolean; accent?: boolean; href?: string }) {
   const val = (
     <span className={`dash-pulse__v${accent && v > 0 ? " dash-pulse__v--accent" : ""}`}>{nf(v)}</span>
   );
@@ -291,7 +366,7 @@ function PulseRow({ k, v, live, accent, href }: { k: string; v: number; live?: b
     <div className="dash-pulse__row">
       <span className="dash-pulse__k">
         {live && <span className="pulse-dot" aria-hidden />}
-        {k}
+        <T en={k} ar={kAr} />
       </span>
       {href && v > 0 ? <Link href={href}>{val}</Link> : val}
     </div>
